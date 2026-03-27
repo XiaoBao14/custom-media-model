@@ -1,0 +1,8 @@
+{
+  "name": "custom-media-model",
+  "version": "1.0.0",
+  "author": "Custom",
+  "description": "完全自定义的图片/视频生成技能，支持任意自定义API配置",
+  "dependencies": ["httpx"],
+  "categories": ["media", "ai-generation"]
+}
