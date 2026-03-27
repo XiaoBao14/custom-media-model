@@ -29,8 +29,8 @@ python -m pip install httpx -i https://pypi.tuna.tsinghua.edu.cn/simple
 $env:MEDIA_GEN_IMAGE_BASE_URL = "你的图片API地址，如https://open-gateway.anspire.cn/v6/images/generations"
 # 图片API密钥（必填）
 $env:MEDIA_GEN_IMAGE_API_KEY = "你的API密钥"
-# 图片生成默认模型（可选）
-$env:MEDIA_GEN_IMAGE_DEFAULT_MODEL = "Doubao-Seedream-5.0-lite"
+# 图片生成默认模型（必填，无默认值，请配置你的模型名）
+$env:MEDIA_GEN_IMAGE_DEFAULT_MODEL = "你的模型名，如Doubao-Seedream-5.0-lite"
 # 图片默认尺寸（可选）
 $env:MEDIA_GEN_IMAGE_DEFAULT_SIZE = "1024x1024"
 ```
@@ -41,8 +41,8 @@ $env:MEDIA_GEN_IMAGE_DEFAULT_SIZE = "1024x1024"
 $env:MEDIA_GEN_VIDEO_BASE_URL = "你的视频API地址"
 # 视频API密钥（必填）
 $env:MEDIA_GEN_VIDEO_API_KEY = "你的API密钥"
-# 视频生成默认模型（可选）
-$env:MEDIA_GEN_VIDEO_DEFAULT_MODEL = "seeddance-1.5-turbo"
+# 视频生成默认模型（必填，无默认值，请配置你的模型名）
+$env:MEDIA_GEN_VIDEO_DEFAULT_MODEL = "你的模型名，如seeddance-1.5-turbo"
 # 视频默认时长/分辨率（可选）
 $env:MEDIA_GEN_VIDEO_DEFAULT_DURATION = "5"
 $env:MEDIA_GEN_VIDEO_DEFAULT_RESOLUTION = "1080p"
@@ -58,11 +58,17 @@ $env:MEDIA_GEN_VIDEO_DEFAULT_RESOLUTION = "1080p"
 
 ### 命令行调用
 ```powershell
-# 生成图片
+# 生成图片（已配置默认模型的情况）
+python ~/.openclaw/workspace/skills/custom-media-model/scripts/generate_image.py "提示词" --size 尺寸 --output 保存路径.png
+
+# 生成图片（未配置默认模型的情况，必须传入--model参数）
 python ~/.openclaw/workspace/skills/custom-media-model/scripts/generate_image.py "提示词" --model 模型名 --size 尺寸 --output 保存路径.png
 
-# 生成视频
+# 生成视频（已配置默认模型的情况）
 python ~/.openclaw/workspace/skills/custom-media-model/scripts/generate_video.py "提示词" --image 输入图片路径 --duration 时长 --resolution 分辨率 --output 保存路径.mp4
+
+# 生成视频（未配置默认模型的情况，必须传入--model参数）
+python ~/.openclaw/workspace/skills/custom-media-model/scripts/generate_video.py "提示词" --model 模型名 --image 输入图片路径 --duration 时长 --resolution 分辨率 --output 保存路径.mp4
 ```
 
 ## 📝 支持的API格式

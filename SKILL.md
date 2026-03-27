@@ -21,8 +21,8 @@ metadata: {"openclaw":{"emoji":"🎨","requires":{"env":["MEDIA_GEN_IMAGE_BASE_U
 $env:MEDIA_GEN_IMAGE_BASE_URL = "你的图片API baseurl，如https://open-gateway.anspire.cn/v6/images/generations"
 # 图片API密钥（必填）
 $env:MEDIA_GEN_IMAGE_API_KEY = "你的API密钥"
-# 图片生成默认模型（可选，默认自动适配）
-$env:MEDIA_GEN_IMAGE_DEFAULT_MODEL = "Doubao-Seedream-5.0-lite"
+# 图片生成默认模型（必填，无默认值，请手动配置你的模型名）
+$env:MEDIA_GEN_IMAGE_DEFAULT_MODEL = "你的模型名，如Doubao-Seedream-5.0-lite"
 # 图片默认尺寸（可选，默认1024x1024）
 $env:MEDIA_GEN_IMAGE_DEFAULT_SIZE = "1024x1024"
 # 鉴权头格式（可选，默认Bearer，支持自定义如x-api-key）
@@ -35,8 +35,8 @@ $env:MEDIA_GEN_IMAGE_AUTH_HEADER = "Bearer"
 $env:MEDIA_GEN_VIDEO_BASE_URL = "你的视频API baseurl"
 # 视频API密钥（必填）
 $env:MEDIA_GEN_VIDEO_API_KEY = "你的API密钥"
-# 视频生成默认模型（可选）
-$env:MEDIA_GEN_VIDEO_DEFAULT_MODEL = "seeddance-1.5-turbo"
+# 视频生成默认模型（必填，无默认值，请手动配置你的模型名）
+$env:MEDIA_GEN_VIDEO_DEFAULT_MODEL = "你的模型名，如seeddance-1.5-turbo"
 # 视频默认参数（可选）
 $env:MEDIA_GEN_VIDEO_DEFAULT_DURATION = "5"
 $env:MEDIA_GEN_VIDEO_DEFAULT_RESOLUTION = "1080p"

@@ -14,7 +14,7 @@ from pathlib import Path
 # Load config from environment variables
 BASE_URL = os.environ.get("MEDIA_GEN_VIDEO_BASE_URL", "")
 API_KEY = os.environ.get("MEDIA_GEN_VIDEO_API_KEY", "")
-DEFAULT_MODEL = os.environ.get("MEDIA_GEN_VIDEO_DEFAULT_MODEL", "seeddance-1.5-turbo")
+DEFAULT_MODEL = os.environ.get("MEDIA_GEN_VIDEO_DEFAULT_MODEL", None)
 DEFAULT_DURATION = int(os.environ.get("MEDIA_GEN_VIDEO_DEFAULT_DURATION", "5"))
 DEFAULT_RESOLUTION = os.environ.get("MEDIA_GEN_VIDEO_DEFAULT_RESOLUTION", "1080p")
 AUTH_HEADER = os.environ.get("MEDIA_GEN_VIDEO_AUTH_HEADER", "Bearer")
@@ -28,6 +28,12 @@ def generate_video(prompt: str, image_path: str = None, model: str = None, durat
         sys.exit(1)
     
     model = model or DEFAULT_MODEL
+    if not model:
+        print("ERROR: No model specified! Please either:", file=sys.stderr)
+        print("  1. Set MEDIA_GEN_VIDEO_DEFAULT_MODEL environment variable (recommended for frequent use)", file=sys.stderr)
+        print("  2. Pass --model <model-name> parameter when calling the script", file=sys.stderr)
+        sys.exit(1)
+    
     duration = duration or DEFAULT_DURATION
     resolution = resolution or DEFAULT_RESOLUTION
     

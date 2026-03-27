@@ -13,7 +13,7 @@ from pathlib import Path
 # Load config from environment variables
 BASE_URL = os.environ.get("MEDIA_GEN_IMAGE_BASE_URL", "")
 API_KEY = os.environ.get("MEDIA_GEN_IMAGE_API_KEY", "")
-DEFAULT_MODEL = os.environ.get("MEDIA_GEN_IMAGE_DEFAULT_MODEL", "Doubao-Seedream-5.0-lite")
+DEFAULT_MODEL = os.environ.get("MEDIA_GEN_IMAGE_DEFAULT_MODEL", None)
 DEFAULT_SIZE = os.environ.get("MEDIA_GEN_IMAGE_DEFAULT_SIZE", "1024x1024")
 AUTH_HEADER = os.environ.get("MEDIA_GEN_IMAGE_AUTH_HEADER", "Bearer")
 
@@ -25,6 +25,12 @@ def generate_image(prompt: str, model: str = None, size: str = None, output_path
         sys.exit(1)
     
     model = model or DEFAULT_MODEL
+    if not model:
+        print("ERROR: No model specified! Please either:", file=sys.stderr)
+        print("  1. Set MEDIA_GEN_IMAGE_DEFAULT_MODEL environment variable (recommended for frequent use)", file=sys.stderr)
+        print("  2. Pass --model <model-name> parameter when calling the script", file=sys.stderr)
+        sys.exit(1)
+    
     size = size or DEFAULT_SIZE
     
     # Parse size to width/height
